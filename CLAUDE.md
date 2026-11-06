@@ -90,7 +90,7 @@ refactor(button): move inline styles to CSS modules
 - Show me the proposed message before running `git commit` when the
   commit has a body, so I can adjust the reasoning.
 
-## Design — spacing, type size and radii
+## Design — spacing, type, radii and text
 
 These apply to any interface I design or build — Figma, CSS, components,
 anything with a measurement in it.
@@ -130,8 +130,32 @@ Between 16 and 20 there is nothing: no 17, 18, 19.
 Never 3, 5, 7, 9. A fully rounded element (pill, avatar) uses half its
 height, which may fall off the scale — that is the one exception.
 
+### No widows — never one word alone on the last line
+
+A single word stranded on its own line reads as a mistake. It shows up most in
+headings, card descriptions, buttons, labels and short paragraphs, where the
+wrap point is predictable.
+
+Fix it in this order:
+
+1. **Let CSS do it.** `text-wrap: pretty` on body copy, `text-wrap: balance` on
+   headings of a few lines. The browser then avoids the widow on every width.
+2. **Non-breaking space** between the last two words where CSS cannot reach —
+   Markdown, a Figma text layer, a string in code:
+   `confidential client&nbsp;files.` In Figma type it as Option+Space.
+3. **Rewrite the line.** Cut or add a word so it fills. Usually the shortest fix,
+   and it tends to improve the sentence.
+
+Never fix it with a manual line break in text that reflows: it solves one width
+and breaks every other one.
+
+Check at the widths the design actually uses, not only the one on screen.
+
 ### Before handing anything off
 
 Check every spacing value, font size and corner radius against these three
 scales. A value off the scale is a defect, not a judgement call — fix it
 rather than explaining it.
+
+Read every heading and short paragraph for a widow, at each width the layout
+supports.
