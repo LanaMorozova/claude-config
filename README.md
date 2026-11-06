@@ -1,41 +1,37 @@
 # claude-config
 
-My Claude Code setup, kept in one place so it survives a machine change and stays
-the same on every computer I work from.
+The standards I hold my own work to, written down and enforced automatically.
 
-Everything here is **global** — it applies in every project, without being invoked.
+Spacing, type and radii run on fixed scales. Commits follow one convention, and a git
+hook rejects the ones that don't. Everything here is **global** — it applies in every
+project I open, without being invoked, on every machine I work from.
 
 ```
-CLAUDE.md                          working rules Claude reads in every session
+CLAUDE.md                          design scales and commit rules, read every session
 skills/project-claude-md/          writes a project's own CLAUDE.md
 git-hooks/commit-msg               rejects commits that break the convention
 git/ignore                         global gitignore
 install.sh                         puts it all in place
 ```
 
-## Install
-
-```bash
-git clone https://github.com/LanaMorozova/claude-config.git
-cd claude-config && bash install.sh
-```
-
-Existing files are backed up as `*.bak` before anything is replaced.
-
 ## What's inside
 
 ### CLAUDE.md
 
-Two sets of rules Claude follows everywhere:
+**Spacing, type and radii** — padding, margins and gaps are multiples of 4; font sizes
+run 12, 14, 16 and then multiples of 4, with 12 as the floor; corner radii are multiples
+of 2. A value off the scale is a defect, not a judgement call — fixed rather than
+explained.
+
+**No widows** — one word stranded on the last line of a heading, button or short
+paragraph is a defect too. Fixed with `text-wrap: balance`, a non-breaking space, or by
+rewriting the line. Never with a manual break in text that reflows: that solves one
+width and breaks every other one.
 
 **Commits** — Conventional Commits, with the parts that are easy to get wrong spelled
 out: the description says the outcome rather than the implementation, `style:` means
 code formatting and never visual design, and a body explains *why* instead of
 restating the diff.
-
-**Spacing, type and radii** — padding, margins and gaps are multiples of 4; font sizes
-run 12 · 14 · 16 and then multiples of 4, with 12 as the floor; corner radii are
-multiples of 2. A value off the scale is a defect, not a judgement call.
 
 ### skills/project-claude-md
 
@@ -54,6 +50,15 @@ Blocks a commit whose message has no type, is missing the space after the colon,
 glues its body to the subject line. Warns, without blocking, about a subject over 72
 characters, a trailing full stop, or a past-tense verb. Merge and revert commits pass
 untouched.
+
+## Install
+
+```bash
+git clone https://github.com/LanaMorozova/claude-config.git
+cd claude-config && bash install.sh
+```
+
+Existing files are backed up as `*.bak` before anything is replaced.
 
 ## Licence
 
