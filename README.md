@@ -39,10 +39,16 @@ A project's CLAUDE.md is not this one. This skill writes that one: it reads the
 repository first — stack, tree, configs, real source files, commit history — and
 describes what is actually there instead of filling in a template.
 
-Its two rules worth stealing: **never repeat the global file** (if a rule would be
-just as true in another repository, it belongs there, not in the project), and
+Its three rules worth stealing: **never repeat the global file** (if a rule would be
+just as true in another repository, it belongs there, not in the project),
 **label every claim** — confirmed, assumption, or open — so an assumption never
-hardens into a fact by being written down.
+hardens into a fact by being written down, and **verify every external fact against
+reality** rather than against the sentence already in the file.
+
+It also revises a file that has gone stale, which is the failure mode that matters:
+a CLAUDE.md rots quietly while still being read as true. The revision pass checks the
+claims against the repository, re-reads every confirmed decision, hunts for rules that
+contradict each other, and reports before changing anything.
 
 ### git-hooks/commit-msg
 
